@@ -17,7 +17,7 @@ class Advertisement(models.Model):
     - заголовок объявления;
     - текст объявления.
     '''
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор объявления')
     category = models.CharField(max_length=2,
                                 choices=[('TN', 'Танки'), ('HE', 'Хилы'), ('DD', 'ДД'), ('ME', 'Торговцы'),
                                          ('GM', 'Гилдмастеры'), ('QG', 'Квестгиверы'), ('BS', 'Кузнецы'),
@@ -27,6 +27,9 @@ class Advertisement(models.Model):
     creation_date = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     title = models.CharField(max_length=255, verbose_name='Заголовок')
     content = RichTextField(blank=True, null=True, verbose_name='Содержание')
+
+    def __str__(self):
+        return f'{self.title}'
 
 
 class Feedback(models.Model):
@@ -42,3 +45,6 @@ class Feedback(models.Model):
     ad = models.ForeignKey(Advertisement, on_delete=models.CASCADE)
     creation_date = models.DateTimeField(auto_now_add=True, verbose_name='дата создания')
     text = models.CharField(max_length=256, verbose_name='Текст отклика')
+
+    def __str__(self):
+        return f'{self.text} on {self.ad}'
