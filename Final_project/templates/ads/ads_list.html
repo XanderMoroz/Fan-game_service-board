@@ -1,0 +1,34 @@
+{% extends 'flatpages/index.html' %}
+
+{% block title %} Список объявлений {% endblock title %}
+
+{% block content %}
+
+<section class="section">
+        <h1 class="title">Свежие публикации от {{ time_now|date:'M d Y' }}</h1>
+        <h2 class="subtitle">
+        Здесь представлены <strong>последние</strong> добавленные публикации, выбирайте и читайте.
+        </h2>
+</section>
+
+    {% for ad in all_advertisement_list %}
+
+
+
+<tr>
+            <!-- Название объявления  -->
+            <td> <a href="{% url 'ad_detail' ad.id %}">{{ ad.title }}</a> </td>
+            <!-- Дата создания объявления  -->
+            <td>{{ ad.creation_date | date:'d.M.Y' }}</td>
+               <!-- Добавим специальный фильтр truncatechars,
+                чтобы ограничить количество символов до 20.
+                Также добавим фильтр "Цензор" для цензурирования непотребных слов.
+                Все остальные символы превратятся в многоточие. -->
+            <!-- Категория объявления  -->
+            <td>{{ ad.get_category_display | truncatechars:20 }}</td>
+            <!-- Текст объявления  -->
+            <td>{{ ad.content | truncatechars:20 }}</td>
+        </tr>
+    {% endfor %}
+
+{% endblock content %}
