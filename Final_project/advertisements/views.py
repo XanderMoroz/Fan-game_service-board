@@ -8,10 +8,10 @@ class AdvertisementList(ListView):
     model = Advertisement
     # Поле, которое будет использоваться для сортировки объявлений
     ordering = 'creation_date'
-    # Указываем имя шаблона, в котором будут все инструкции о том, как должны быть показаны объявления
-    template_name = 'ads_list.html'
+    # Указываем имя шаблона, в котором будут все инструкции к показу объявлений
+    template_name = 'ads/ads_list.html'
     # Слово, чтобы обратиться к списку объектов в html-шаблоне.
-    context_object_name = 'Advertisements'
+    context_object_name = 'all_advertisement_list'
 
 class AdvertisementDetail(DetailView):
     model = Advertisement
