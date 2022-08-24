@@ -1,0 +1,32 @@
+{% extends 'flatpages/index.html' %} <!--  наследуемся от шаблона default.html, который создавали для flatpages -->
+
+
+
+{% block title %}
+Post Details            <!-- Название у нас будет Post Details -->
+{% endblock title %}
+
+
+{% block content %} <!-- В контенте на странице мы выводим саму публикацию, идентификатор которой был передан в url -->
+
+    <table>
+            <tr>
+                <td>Название</td>
+                <td>Дата публикации</td>
+                <td>Категория</td>
+                <td>Содержание</td>
+            </tr>
+
+            <tr>
+                <td>{{ ad_detail.title }}</td>
+                 <!-- Добавим специальный фильтр "Цензор" для цензурирования непотребных слов.
+                Все остальные символы превратятся в многоточие. -->
+
+                <td>{{ ad_detail.creation_date | date:'d.M.Y' }}</td>
+                <td>{{ ad_detail.get_category_display }}</td>
+                <td>{{ ad_detail.content }}</td>
+           </tr>
+
+    </table>
+
+{% endblock content %}
