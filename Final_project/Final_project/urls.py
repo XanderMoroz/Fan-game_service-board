@@ -16,8 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-   # Подключаем все адреса из приложения "advertisments" к главному приложению с префиксом ads/.
-   path('ads/', include('advertisements.urls')),
+    path('pages/', include('django.contrib.flatpages.urls')),
+    # Подключаем все адреса из приложения "advertisements" к главному приложению с префиксом ads/.
+    path('ads/', include('advertisements.urls')),
 ]
