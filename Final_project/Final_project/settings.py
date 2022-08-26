@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     # приложение для статических страниц
     'django.contrib.sites',
     'django.contrib.flatpages',
-    # редактор WYSIWYG для удобного ре
+    # редактор WYSIWYG для удобного редактирования
     'ckeditor',
     # наше приложение
     'advertisements.apps.AdvertisementsConfig',
