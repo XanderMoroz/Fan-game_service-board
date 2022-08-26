@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import AdvertisementList, AdvertisementDetail, AdCreate
+from .views import AdvertisementList, AdvertisementDetail, AdCreate, AdUpdate
 
 urlpatterns = [
     # Представляем наш класс списка объявлений(AdvertisementList из view.py) при помощи метода as_view.
