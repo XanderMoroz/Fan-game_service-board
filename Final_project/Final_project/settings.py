@@ -46,8 +46,6 @@ INSTALLED_APPS = [
     'advertisements.apps.AdvertisementsConfig',
 ]
 
-SITE_ID = 1
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
