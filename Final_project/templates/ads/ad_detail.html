@@ -1,32 +1,98 @@
 {% extends 'flatpages/index.html' %} <!--  наследуемся от шаблона default.html, который создавали для flatpages -->
 
-
-
 {% block title %}
-Post Details            <!-- Название у нас будет Post Details -->
+Подробности объявления            <!-- Название у нас будет Post Details -->
 {% endblock title %}
 
 
 {% block content %} <!-- В контенте на странице мы выводим саму публикацию, идентификатор которой был передан в url -->
 
-    <table>
-            <tr>
-                <td>Название</td>
-                <td>Дата публикации</td>
-                <td>Категория</td>
-                <td>Содержание</td>
-            </tr>
+<div class="card">
+    <div class="card-content">
+        <div class="media">
+            <div class="media-left">
+                <figure class="image is-48x48">
+                <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+                </figure>
+            </div>
 
-            <tr>
-                <td>{{ ad_detail.title }}</td>
-                 <!-- Добавим специальный фильтр "Цензор" для цензурирования непотребных слов.
-                Все остальные символы превратятся в многоточие. -->
+        <div class="media-content">
+            <p class="title is-4">{{ ad_detail.user }}</p>
+            <p class="subtitle is-6">{{ ad_detail.creation_date | date:'d.M.Y' }}</p>
+        </div>
 
-                <td>{{ ad_detail.creation_date | date:'d.M.Y' }}</td>
-                <td>{{ ad_detail.get_category_display }}</td>
-                <td>{{ ad_detail.content }}</td>
-           </tr>
+    </div>
+        <!-- Название статьи. -->
+    <div class="content">
+        <p class="title is-3 is-spaced has-text-centered">
+            {{ ad_detail.title }}
+        </p>
+        <!-- Список тегов категорий. -->
+        <p class="subtitle is-5 has-text-centered has-text-grey-dark">
+            <span class="tag is-info">{{ad_detail.get_category_display}}</span>
+        </p>
+        <br>
+        <!-- Содержание статьи. -->
+        <p>
+            {{ ad_detail.content }}
+        </p>
 
-    </table>
+        <!-- Если пользователь является автором статьи. -->
+        {% if request.user.username != ad_detail.user.username %}
+
+        <!-- Добавляем кнопку редактирования статьи. -->
+        <div class="buttons is-right">
+            <button class="button is-success">
+                <span class="icon">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </span>
+                <span>
+                    <a href="{% url 'post_update' post_detail.id %}">
+                        <p class="has-text-white">
+                        Редактировать
+                        </p>
+                    </a>
+                </span>
+            </button>
+
+            <!-- Добавляем кнопку удаления статьи. -->
+            <button class="button is-danger is-outlined is-right">
+                <a href="{% url 'post_delete' post_detail.id %}">
+                    <p class="has-text-danger">
+                        Удалить
+                    </p>
+                </a>
+                <span class="icon">
+                    <i class="fas fa-times"></i>
+                </span>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+     <!-- Если пользователь авторизован. -->
+
+
+    <!-- Добавляем форму для комментария. -->
+        <form method="POST" >
+            {% csrf_token %}
+            <!-- Выводим текстовое поле для комментария-->
+            <div class="field">
+                <label class="label">Комментарий</label>
+                <div class="control">
+                    <input class="input" type="text" placeholder="Напишите комментарий" >
+                    </input>
+                </div>
+            </div>
+            <div class="buttons is-right">
+                <button type="submit" class="button is-link is-right">
+                Опубликовать
+                </button>
+            </div>
+        </form>
+
+    </div>
+</div>
 
 {% endblock content %}
+
+

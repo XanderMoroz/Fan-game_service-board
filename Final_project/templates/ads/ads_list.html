@@ -17,7 +17,12 @@
 
 <tr>
             <!-- Название объявления  -->
-            <td> <a href="{% url 'ad_detail' ad.id %}">{{ ad.title }}</a> </td>
+            <td>
+                <a href="{% url 'ad_detail' ad.id %}">{{ ad.title }}</a>
+                <a href="{% url 'update_advertisement' ad.id %}"><u>Редактировать</u></a> <!-- добавим ссылку на редактирование товара-->
+
+
+            </td>
             <!-- Дата создания объявления  -->
             <td>{{ ad.creation_date | date:'d.M.Y' }}</td>
                <!-- Добавим специальный фильтр truncatechars,
