@@ -38,7 +38,7 @@
         </p>
 
         <!-- Если пользователь является автором статьи. -->
-        {% if request.user.username != ad_detail.user.username %}
+        {% if request.user.username == ad_detail.user.username %}
 
         <!-- Добавляем кнопку редактирования статьи. -->
         <div class="buttons is-right">
@@ -47,7 +47,7 @@
                     <i class="fa-solid fa-pen-to-square"></i>
                 </span>
                 <span>
-                    <a href="{% url 'post_update' post_detail.id %}">
+                    <a href="{% url 'update_advertisement' ad_detail.id %}">
                         <p class="has-text-white">
                         Редактировать
                         </p>
@@ -57,7 +57,7 @@
 
             <!-- Добавляем кнопку удаления статьи. -->
             <button class="button is-danger is-outlined is-right">
-                <a href="{% url 'post_delete' post_detail.id %}">
+                <a href="{% url 'delete_advertisement' ad_detail.id %}">
                     <p class="has-text-danger">
                         Удалить
                     </p>
@@ -68,30 +68,71 @@
             </button>
         </div>
         {% endif %}
+        </div>
     </div>
-     <!-- Если пользователь авторизован. -->
+</div>
 
 
-    <!-- Добавляем форму для комментария. -->
+
+<!-- Раздел с откликами -->
+<section class="section">
+    <h2 class="subtitle">
+    На это объявление откликнулись {{ feedbacks | length }} раз
+  </h2>
+</section>
+
+
+{% for feedback in ad_detail.feedback_set.all %}
+
+<div class="card">
+    <div class="card-content">
+        <div class="media">
+        <!-- Информация слева-->
+            <div class="media-left">
+                <figure class="image is-48x48">
+                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+                </figure>
+            </div>
+
+            <div class="media-content">
+                <p class="title is-4">
+                    {{ feedback.author | truncatewords:7 }}
+                </p>
+                <p class="subtitle is-6">{{ feedback.creation_date | date:'d.M.Y' }}</p>
+            </div>
+        </div>
+        <div class="content">
+                {{ feedback.text }}
+        </div>
+    </div>
+</div>
+<br>
+
+
+{% endfor %}
+
+{% if request.user.username == ad_detail.user.username %}
+
+{% endif %}
+
+    <!-- Добавляем форму для комментария.
         <form method="POST" >
-            {% csrf_token %}
-            <!-- Выводим текстовое поле для комментария-->
+            {% csrf_token %}-->
+            <!-- Выводим текстовое поле для комментария
             <div class="field">
-                <label class="label">Комментарий</label>
+                <label class="label">Хотите откликнуться?</label>
                 <div class="control">
-                    <input class="input" type="text" placeholder="Напишите комментарий" >
+                    <input class="input" type="text" placeholder="Напишите свой отклик здесь" {{ form.text }}
                     </input>
                 </div>
             </div>
             <div class="buttons is-right">
                 <button type="submit" class="button is-link is-right">
-                Опубликовать
+                Отправить отклик
                 </button>
             </div>
-        </form>
+        </form>-->
 
-    </div>
-</div>
 
 {% endblock content %}
 

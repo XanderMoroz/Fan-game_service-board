@@ -30,19 +30,13 @@
 
         <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-start">
-                <a class="navbar-item"  href="/news/add">
-                    <span> Создать статью </span>
+                <a class="navbar-item"  href="{% url 'ads_list' %}">
+                    <span> Объявления </span>
                     <span class="icon">
                     <i class="fa-solid fa-feather"></i>
                     </span>
                 </a>
-                <a class="navbar-item"  href="/news/subscription">
-                    <span> Категории </span>
-                    <span class="icon">
-                    <i class="fa-solid fa-cubes-stacked"></i>
-                    </span>
-                </a>
-                <a class="navbar-item">
+                <a class="navbar-item" href="{% url 'search_advertisement' %}">
                     <span> Поиск </span>
                     <span class="icon">
                     <i class="fa-solid fa-magnifying-glass"></i>

@@ -25,3 +25,22 @@ class AdForm(ModelForm):
         }
 
         widgets = {'user': forms.HiddenInput()}
+
+class FeedbackForm(ModelForm):
+    """
+    Форма для создания отклика на объявление
+    """
+    class Meta:
+        model = Feedback
+        fields = [
+            'text',
+            'ad',
+            'author'
+                ]
+        labels = {
+            'text': "Текст отклика",
+        }
+
+        widgets = {'author': forms.HiddenInput(),
+                   'ad': forms.HiddenInput(),
+                   }

@@ -1,0 +1,41 @@
+{% extends 'flatpages/index.html' %}
+
+{% block title %} Ad Search List {% endblock title %}
+
+{% block content %}
+
+
+<!-- Перед таблицей добавим форму для поиска -->
+<form method="GET">
+    {{ filter.form }} <!-- Форму от фильтров за нас сделает Django. А вот кнопку, увы придётся делать самому -->
+    <input type="submit" value="Найти">
+</form>
+
+<table>
+    <thead>
+        <th>
+            Name
+        </th>
+        <th>
+            Category
+        </th>
+        <th>
+            Date
+        </th>
+    </thead>
+    {% for ad in filter.qs %} <!-- поменяем products на filter.qs, т. к. теперь мы забираем уже отобранную по каким-то параметрам информацию -->
+    <tr>
+        <td>
+            {{ ad.title }}
+        </td>
+        <td>
+            {{ ad.category }}
+        </td>
+        <td>
+            {{ ad.creation_date }}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock content %}

@@ -3,6 +3,8 @@ from django.db import models
 from ckeditor.fields import RichTextField
 
 # Create your models here.
+from django.urls import reverse
+
 
 class Advertisement(models.Model):
     '''
@@ -29,9 +31,9 @@ class Advertisement(models.Model):
     content = RichTextField(blank=True, null=True, verbose_name='Содержание')
 
     def __str__(self):
-        return f'{self.title}'
+        return f'{self.id}'
 
-    def get_absolute_url(self):  # добавим абсолютный путь, чтобы после создания нас перебрасывало на страницу с товаром
+    def get_absolute_url(self):  # добавим путь, чтобы после создания перебрасывало на страницу с объявлениями.
         return f'/ads/{self.id}'
 
 
@@ -51,3 +53,8 @@ class Feedback(models.Model):
 
     def __str__(self):
         return f'{self.text} on {self.ad}'
+
+    def get_absolute_url(self):  # добавим абсолютный путь, чтобы после создания нас перебрасывало на страницу с товаром
+        return f'/ads/'
+
+

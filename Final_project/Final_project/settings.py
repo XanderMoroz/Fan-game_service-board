@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'ckeditor',
     # наше приложение
     'advertisements.apps.AdvertisementsConfig',
+    # фильтры для поиска
+    'django_filters'
 ]
 
 MIDDLEWARE = [

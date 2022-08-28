@@ -5,13 +5,59 @@
 {% block content %}
 
 <section class="section">
-        <h1 class="title">Свежие публикации от {{ time_now|date:'M d Y' }}</h1>
+        <h1 class="title">Свежие объявления от игроков на {{ time_now | date:'M d Y' }}</h1>
         <h2 class="subtitle">
-        Здесь представлены <strong>последние</strong> добавленные публикации, выбирайте и читайте.
+        Здесь представлены последние добавленные <strong>объявления</strong>, читайте и откликайтесь.
         </h2>
 </section>
-
     {% for ad in all_advertisement_list %}
+<div class="card">
+  <div class="card-content">
+    <div class="media">
+        <!-- Информация слева-->
+      <div class="media-left">
+        <figure class="image is-48x48">
+          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+        </figure>
+      </div>
+
+      <div class="media-content">
+        <p class="title is-4">
+            <a href="{% url 'ad_detail' ad.id %}">{{ ad.title | truncatewords:7 }}
+            </a>
+        </p>
+          <p class="subtitle is-6">{{ ad.user }}</p>
+      </div>
+        <!-- Информация справа-->
+        <div class="media-right">
+            <p class="title is-4">
+                {{ ad.get_category_display }}
+            </p>
+            <p class="subtitle is-6">
+                Создано {{ ad.creation_date | date:'d.M.Y' }}
+            </p>
+        </div>
+
+    </div>
+
+    <div class="content">
+      {{ ad.content | truncatewords:20 }}
+
+      <br>
+      <time datetime="2016-1-1">{{ post.creation_date | date:'d.M.Y' }}</time>
+    </div>
+  </div>
+
+
+    <footer class="card-footer">
+            <!-- добавим ссылку на редактирование публикации-->
+            <a href="{% url 'update_advertisement' ad.id %}" class="card-footer-item">Редактировать</a>
+            <!-- добавим ссылку на удаление публикации-->
+            <a href="{% url 'delete_advertisement' ad.id %}" class="card-footer-item">Удалить</a>
+    </footer>
+</div>
+
+ <br>
 
 
 
