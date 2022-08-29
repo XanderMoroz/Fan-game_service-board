@@ -22,4 +22,10 @@ urlpatterns = [
     path('pages/', include('django.contrib.flatpages.urls')),
     # Подключаем все адреса из приложения "advertisements" к главному приложению с префиксом ads/.
     path('ads/', include('advertisements.urls')),
+    # Подключаем все адреса из приложения "user_account" к главному приложению.
+
+    #path('', include('user_account.urls')),
+
+    path('accounts/', include('django.contrib.auth.urls')), # Добавили новый маршрут
+    # #path('user/', include('user_account.urls'))
 ]

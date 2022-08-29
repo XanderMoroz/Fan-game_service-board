@@ -42,8 +42,10 @@ INSTALLED_APPS = [
     'django.contrib.flatpages',
     # редактор WYSIWYG для удобного редактирования
     'ckeditor',
-    # наше приложение
+    # наше приложение с объявлениями и откликами
     'advertisements.apps.AdvertisementsConfig',
+    # наше приложение с регистрацией, аутентификацией и личным кабинетом
+    'accounts.apps.AccountsConfig',
     # фильтры для поиска
     'django_filters'
 ]
@@ -135,3 +137,10 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SITE_ID = 1
+
+"""
+LOGIN_URL = '/login/'
+"""
+LOGIN_REDIRECT_URL = 'ads/'

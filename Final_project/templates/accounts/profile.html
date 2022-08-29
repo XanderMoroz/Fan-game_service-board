@@ -1,16 +1,16 @@
-{% extends 'flatpages/index.html' %}
+% extends 'flatpages/index.html' %}
 
-{% block title %} Список объявлений {% endblock title %}
+{% block title %} Личный кабинет пользователя {% endblock title %}
 
 {% block content %}
 
 <section class="section">
-        <h1 class="title">Свежие объявления от игроков на {{ time_now | date:'M d Y' }}</h1>
+        <h1 class="title">Ваши объявления и отклики</h1>
         <h2 class="subtitle">
-        Здесь представлены последние добавленные <strong>объявления</strong>, читайте и откликайтесь.
+        Здесь представлены <strong>объявления</strong> и отклики, оставленные другими пользователями.
         </h2>
 </section>
-    {% for ad in all_advertisement_list %}
+    {% for ad in user_advertisement_list %}
 <div class="card">
   <div class="card-content">
     <div class="media">

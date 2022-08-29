@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.shortcuts import render
 from datetime import datetime
+
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from .filters import AdFilter
@@ -57,6 +58,7 @@ class AdvertisementDetail(DetailView, CreateView):
     template_name = 'ads/ad_detail.html'
     # Название объекта, в котором будет выбранное пользователем объявление
     context_object_name = 'ad_detail'
+    #success_url =
     form_class = FeedbackForm
 
     def get_initial(self):

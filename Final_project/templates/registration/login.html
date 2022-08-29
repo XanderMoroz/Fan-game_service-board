@@ -1,0 +1,18 @@
+{% extends 'accounts/base.html' %}
+
+
+{% block main %}
+<div class="card-body">
+<h4 class="card-title">Log in to your account</h4>
+
+<form method="post">
+{% csrf_token %}
+<input type="hidden" name="next" value="{% url 'ads_list' %}">
+
+  {{ form }}
+
+<button type="submit" class="btn btn-primary btn-block">Log in</button>
+</form>
+</div>
+{% endblock %}
+

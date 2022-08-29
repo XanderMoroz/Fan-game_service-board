@@ -33,7 +33,7 @@
                 <a class="navbar-item"  href="{% url 'ads_list' %}">
                     <span> Объявления </span>
                     <span class="icon">
-                    <i class="fa-solid fa-feather"></i>
+                    <i class="fa-solid fa-list"></i>
                     </span>
                 </a>
                 <a class="navbar-item" href="{% url 'search_advertisement' %}">
@@ -42,7 +42,12 @@
                     <i class="fa-solid fa-magnifying-glass"></i>
                     </span>
                 </a>
-
+                <a class="navbar-item"  href="{% url 'create_advertisement' %}">
+                    <span> Создать </span>
+                    <span class="icon">
+                    <i class="fa-solid fa-feather"></i>
+                    </span>
+                </a>
         <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">
             Еще
@@ -69,8 +74,12 @@
 
         <div class="navbar-end">
             <div class="navbar-item">
+                <a class="navbar-item" >
+                    <span> Привет, {{ request.user }}!   </span>
+
+                </a>
                 <div class="buttons">
-                    <a class="button is-info">
+                    <a class="button is-info" href="{% url 'logout' %}">
                     <span class="icon">
                     <i class="fa-solid fa-arrow-right-from-bracket"></i>
                     </span>
@@ -86,7 +95,13 @@
         <div class="navbar-end">
             <div class="navbar-item">
                 <div class="buttons">
-                    <a href="sign/login/" class="button is-success">
+                    <a class="button is-success">
+                        <span>Регистрация</span>
+                        <span class="icon">
+                    <i class="fa-solid fa-user-plus"></i>
+                    </span>
+                    </a>
+                    <a  class="button is-info" href="{% url 'login' %}">
                     <span class="icon">
                     <i class="fa-solid fa-right-to-bracket"></i>
                     </span>

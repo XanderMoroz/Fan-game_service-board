@@ -20,16 +20,19 @@
             <p class="title is-4">{{ ad_detail.user }}</p>
             <p class="subtitle is-6">{{ ad_detail.creation_date | date:'d.M.Y' }}</p>
         </div>
-
+        <div class="media-right">
+            <p class="title is-4">
+                {{ ad_detail.get_category_display }}
+            </p>
+            <p class="subtitle is-6">
+                Откликов {{feedbacks | length}}
+            </p>
+        </div>
     </div>
         <!-- Название статьи. -->
     <div class="content">
         <p class="title is-3 is-spaced has-text-centered">
             {{ ad_detail.title }}
-        </p>
-        <!-- Список тегов категорий. -->
-        <p class="subtitle is-5 has-text-centered has-text-grey-dark">
-            <span class="tag is-info">{{ad_detail.get_category_display}}</span>
         </p>
         <br>
         <!-- Содержание статьи. -->
@@ -56,16 +59,20 @@
             </button>
 
             <!-- Добавляем кнопку удаления статьи. -->
-            <button class="button is-danger is-outlined is-right">
-                <a href="{% url 'delete_advertisement' ad_detail.id %}">
-                    <p class="has-text-danger">
+            <button class="button is-danger">
+
+                <span>
+                    <a href="{% url 'delete_advertisement' ad_detail.id %}">
+                        <p class="has-text-white">
                         Удалить
-                    </p>
-                </a>
+                        </p>
+                    </a>
+                </span>
                 <span class="icon">
-                    <i class="fas fa-times"></i>
+                    <i class="fa-times"></i>
                 </span>
             </button>
+
         </div>
         {% endif %}
         </div>
@@ -76,8 +83,9 @@
 
 <!-- Раздел с откликами -->
 <section class="section">
+    <h1 class="title">На это объявление откликнулись {{feedbacks | length}} раз</h1>
     <h2 class="subtitle">
-    На это объявление откликнулись {{ feedbacks | length }} раз
+
   </h2>
 </section>
 
@@ -115,23 +123,27 @@
 
 {% endif %}
 
-    <!-- Добавляем форму для комментария.
+    <!-- Добавляем форму для комментария.-->
         <form method="POST" >
-            {% csrf_token %}-->
-            <!-- Выводим текстовое поле для комментария
-            <div class="field">
-                <label class="label">Хотите откликнуться?</label>
-                <div class="control">
-                    <input class="input" type="text" placeholder="Напишите свой отклик здесь" {{ form.text }}
-                    </input>
-                </div>
+            {% csrf_token %}
+            {{ form }}
             </div>
             <div class="buttons is-right">
                 <button type="submit" class="button is-link is-right">
                 Отправить отклик
                 </button>
             </div>
-        </form>-->
+        </form>
+            <!-- Выводим текстовое поле для комментария
+            <div class="field">
+                <label class="label">Хотите откликнуться?</label>
+                <div class="control">
+                    <input class="input" type="text" placeholder="Напишите свой отклик здесь"
+                    </input>
+                </div>
+
+            </div>-->
+
 
 
 {% endblock content %}

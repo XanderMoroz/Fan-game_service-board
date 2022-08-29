@@ -3,7 +3,13 @@
 {% block title %} Ad creation {% endblock title %}
  
 {% block content %}
-<h3>Редактирование</h3>
+<!-- Аннотация страницы-->
+<section class="section">
+        <h1 class="title">Редактирование объявления</h1>
+        <h2 class="subtitle">
+        Здесь вы можете <strong>исправить</strong> свое объявление. Поправьте поля, расположенные ниже.
+        </h2>
+</section>
 <form method="POST">
     {% csrf_token %} 
     {{ form }} <!-- Теперь нам нужна только готовая форма и кнопка -->

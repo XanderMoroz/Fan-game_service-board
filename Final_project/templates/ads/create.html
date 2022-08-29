@@ -3,7 +3,13 @@
 {% block title %} Ad creation {% endblock title %}
  
 {% block content %}
-<h3>Создание публикации</h3>
+<!-- Аннотация страницы-->
+<section class="section">
+        <h1 class="title">Создание объявления</h1>
+        <h2 class="subtitle">
+        Здесь вы можете <strong>создать</strong> свое собственное объявление. Заполните поля ниже.
+        </h2>
+</section>
 <form method="POST">
     {% csrf_token %} 
     {{ form }} <!-- Теперь нам нужна только готовая форма и кнопка -->

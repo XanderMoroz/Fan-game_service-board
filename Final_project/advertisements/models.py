@@ -3,7 +3,7 @@ from django.db import models
 from ckeditor.fields import RichTextField
 
 # Create your models here.
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 
 
 class Advertisement(models.Model):
@@ -53,8 +53,8 @@ class Feedback(models.Model):
 
     def __str__(self):
         return f'{self.text} on {self.ad}'
-
+    """"""
     def get_absolute_url(self):  # добавим абсолютный путь, чтобы после создания нас перебрасывало на страницу с товаром
-        return f'/ads/'
+        return reverse_lazy('ads_list')
 
 
