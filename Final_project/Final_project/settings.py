@@ -46,8 +46,13 @@ INSTALLED_APPS = [
     'advertisements.apps.AdvertisementsConfig',
     # наше приложение с регистрацией, аутентификацией и личным кабинетом
     'accounts.apps.AccountsConfig',
+    'signup',
     # фильтры для поиска
-    'django_filters'
+    'django_filters',
+    
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 ]
 
 MIDDLEWARE = [
@@ -75,9 +80,20 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                # `allauth` needs this from django
+                'django.template.context_processors.request',
             ],
         },
     },
+]
+
+AUTHENTICATION_BACKENDS = [
+    # Встроенный бэкенд Django, реализующий аутентификацию по username
+    'django.contrib.auth.backends.ModelBackend',
+
+    # специфичная аутентификация по email или сервис-провайдеру.
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 WSGI_APPLICATION = 'Final_project.wsgi.application'
@@ -143,4 +159,49 @@ SITE_ID = 1
 """
 LOGIN_URL = '/login/'
 """
-LOGIN_REDIRECT_URL = 'ads/'
+LOGIN_REDIRECT_URL = '/'
+"""
+ACCOUNT_EMAIL_REQUIRED = False
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+
+EMAIL_HOST = 'smtp.yandex.ru'  # адрес сервера Яндекс-почты для всех один и тот же
+EMAIL_PORT = 465  # порт smtp сервера тоже одинаковый
+EMAIL_HOST_USER = ''  # ваше имя пользователя, например, если ваша почта user@yandex.ru, то сюда надо писать user, иными словами, это всё то что идёт до собаки
+EMAIL_HOST_PASSWORD = ''  # пароль от почты
+EMAIL_USE_SSL = True  # Яндекс использует ssl, подробнее о том, что это, почитайте в дополнительных источниках, но включать его здесь обязательно
+"""
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+EMAIL_CONFIRMATION_SIGNUP = True
+
+ACCOUNT_FORMS = {'signup': 'signup.forms.BasicSignupForm'}
+# адрес сервера Яндекс-почты для всех один и тот же
+EMAIL_HOST = 'smtp.yandex.ru'
+# порт smtp сервера тоже одинаковый
+EMAIL_PORT = 465
+# ваше имя пользователя. Если ваша почта user@yandex.ru, то писать user.
+EMAIL_HOST_USER = 'GoodNewsObserver'
+# пароль от почты
+EMAIL_HOST_PASSWORD = '12345qq67890'
+# Яндекс использует ssl, подробнее почитайте. Включать его здесь надо обязательно
+EMAIL_USE_SSL = True
+# здесь указываем уже свою ПОЛНУЮ почту, с которой будут отправляться письма
+
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER + "@yandex.ru"
+
+SERVER_EMAIL = 'GoodNewsObserver@yandex.ru'
+
+# формат даты, которую будет воспринимать наш задачник (вспоминаем модуль по фильтрам)
+APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
+
+# если задача не выполняется за 25 секунд, то она автоматически снимается, можете поставить время побольше, но как правило, это сильно бьёт по производительности сервера
+APSCHEDULER_RUN_NOW_TIMEOUT = 25  # Seconds

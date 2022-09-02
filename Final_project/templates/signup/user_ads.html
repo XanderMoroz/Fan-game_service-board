@@ -1,0 +1,98 @@
+{% extends 'flatpages/index.html' %}
+
+{% block title %} Личный кабинет пользователя {% endblock title %}
+
+{% block content %}
+
+<section class="section">
+        <h1 class="title">Ваши объявления и отклики</h1>
+        <h2 class="subtitle">
+        Всего откликов <strong>{{ user_feedbacks | length }}</strong>
+            из них принято <strong>{{ accepted_feedbacks | length }}</strong>
+        </h2>
+</section>
+<!--Форму от фильтров за нас сделает django. А вот кнопку, увы, придётся делать самому-->
+
+
+{% if user_ads %}
+<form method="GET">
+    {{ filter.form }}
+    <input type="submit" value="Найти">
+</form>
+<hr>
+{% for ad in user_ads %}
+<div class="card">
+    <div class="card-content">
+        <div class="media">
+            <div class="media-content">
+                <p class="title is-4">{{ ad.title }}</p>
+                <p class="subtitle is-6">{{ ad.get_category_display }}</p>
+            </div>
+            <div class="media-right">
+                <p class="title is-4">{{ ad.creation_date | date:'G:i' }}</p>
+                <p class="subtitle is-6">{{ ad.creation_date | date:'d E Y' }}</p>
+            </div>
+        </div>
+        {% for feedback in filter.qs %}
+        <div class="box">
+            <article class="media">
+                <div class="media-left">
+                    <figure class="image is-64x64">
+                    <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+                    </figure>
+                </div>
+                <div class="media-content">
+                <div class="content">
+                    <p>
+                    <strong>{{ feedback.author.username }}</strong> <small>{{ feedback.creation_date | date:'G:i d E Y' }}</small>
+                    <br>
+                    {{ feedback.text }}
+                    </p>
+                </div>
+
+                    <div class="buttons is-right">
+                            {% if feedback.acception == False %}
+                            <button class="button is-success" >
+                                <span class="icon">
+                                    <i class="fa-solid fa-check"></i>
+                                </span>
+                                <span>
+                                    <a href="{% url 'feedback_accept' feedback.id %}">
+                                    <p class="has-text-white">
+                                        Принять
+                                    </p>
+                                    </a>
+                                </span>
+                            </button>
+                            {% else %}
+                            <button class="button is-danger" >
+                                <span class="icon">
+                                    <i class="fa-solid fa-check"></i>
+                                </span>
+                                <span>
+                                    <a href="{% url 'feedback_reject' feedback.id %}">
+                                    <p class="has-text-white">
+                                        Отклонить
+                                    </p>
+                                    </a>
+                                </span>
+                            </button>
+                            {% endif %}
+                    </div>
+                </div>
+            </article>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<br>
+
+{% endfor %}
+
+{% else %}
+
+<h2>Пока что у вас нет ни одного отклика!</h2>
+{% endif %}
+{% endblock content %}
+
+

@@ -11,8 +11,16 @@
         </h2>
 </section>
 <form method="POST">
-    {% csrf_token %} 
-    {{ form }} <!-- Теперь нам нужна только готовая форма и кнопка -->
+    {% csrf_token %}
+
+
+    {{ form.media }} <!-- Теперь нам нужна только готовая форма и кнопка -->
+    {{ form.as_table }}
+
+    <br>
+
+
     <input type="submit" value="Добавить публикацию">
 </form>
+
 {% endblock content %}

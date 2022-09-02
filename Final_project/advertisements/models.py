@@ -34,7 +34,7 @@ class Advertisement(models.Model):
         return f'{self.id}'
 
     def get_absolute_url(self):  # добавим путь, чтобы после создания перебрасывало на страницу с объявлениями.
-        return f'/ads/{self.id}'
+        return f'/{self.id}'
 
 
 class Feedback(models.Model):
@@ -47,9 +47,10 @@ class Feedback(models.Model):
         - текст отклика.
     '''
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    ad = models.ForeignKey(Advertisement, on_delete=models.CASCADE)
+    ad = models.ForeignKey(Advertisement, on_delete=models.CASCADE, verbose_name='Объявление')
     creation_date = models.DateTimeField(auto_now_add=True, verbose_name='дата создания')
     text = models.CharField(max_length=256, verbose_name='Текст отклика')
+    acception = models.BooleanField(default=False)
 
     def __str__(self):
         return f'{self.text} on {self.ad}'

@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class AdvertisementsConfig(AppConfig):
+class SignupConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'advertisements'
+    name = 'signup'

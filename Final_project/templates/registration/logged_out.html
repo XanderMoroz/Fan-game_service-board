@@ -1,7 +1,19 @@
 {% extends 'accounts/base.html' %}
 {% block main %}
 
-<p>You are logged out!</p>
-<a  href="{% url 'login' %}">Log in again</a>
+
+<p>Вы успешно вышли из аккаунта!</p>
+<div>
+    <span>
+        <a  href="{% url 'login' %}">Войти</a>
+    </span>
+    <br>
+    <span>
+        <a  href="{% url 'ads_list' %}">На главную</a>
+    </span>
+</div>
+
+
+
 
 {% endblock %}

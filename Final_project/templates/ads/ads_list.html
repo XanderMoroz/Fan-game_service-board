@@ -12,42 +12,39 @@
 </section>
     {% for ad in all_advertisement_list %}
 <div class="card">
-  <div class="card-content">
-    <div class="media">
+    <div class="card-content">
+        <div class="media">
         <!-- Информация слева-->
-      <div class="media-left">
-        <figure class="image is-48x48">
-          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-        </figure>
-      </div>
+            <div class="media-left">
+                <figure class="image is-48x48">
+                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+                </figure>
+            </div>
 
-      <div class="media-content">
-        <p class="title is-4">
-            <a href="{% url 'ad_detail' ad.id %}">{{ ad.title | truncatewords:7 }}
-            </a>
-        </p>
-          <p class="subtitle is-6">{{ ad.user }} от {{ ad.creation_date | date:'d.M.Y' }} </p>
-      </div>
-        <!-- Информация справа-->
-        <div class="media-right">
-            <p class="title is-4">
+            <div class="media-content">
+                <p class="title is-4">
+                <a href="{% url 'ad_detail' ad.id %}">{{ ad.title | truncatewords:7 }}
+                </a>
+                </p>
+                <p class="subtitle is-6">{{ ad.user }} от {{ ad.creation_date | date:' d E Y G:i' }} </p>
+            </div>
+            <!-- Информация справа-->
+            <div class="media-right">
+                <p class="title is-4">
                 {{ ad.get_category_display }}
-            </p>
-            <p class="subtitle is-6">
-                Откликов {{ ad.feedback_set.all | length }}
-            </p>
+                </p>
+                <p class="subtitle is-6">
+                    Откликов {{ ad.feedback_set.all | length }}
+                </p>
+            </div>
         </div>
-
+        <div class="content">
+            {{ ad.content | truncatewords:20 }}
+            <br>
+        </div>
     </div>
 
-    <div class="content">
-      {{ ad.content | truncatewords:20 }}
-
-      <br>
-      <time datetime="2016-1-1">{{ post.creation_date | date:'d.M.Y' }}</time>
-    </div>
-  </div>
-
+{% if request.user.username == ad.user.username %}
 
     <footer class="card-footer">
             <!-- добавим ссылку на редактирование публикации-->
@@ -55,10 +52,13 @@
             <!-- добавим ссылку на удаление публикации-->
             <a href="{% url 'delete_advertisement' ad.id %}" class="card-footer-item">Удалить</a>
     </footer>
+ {% endif %}
 </div>
 
- <br>
 
-    {% endfor %}
+
+<br>
+
+{% endfor %}
 
 {% endblock content %}

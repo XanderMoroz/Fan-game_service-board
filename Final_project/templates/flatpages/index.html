@@ -31,10 +31,10 @@
         <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-start">
                 <a class="navbar-item"  href="{% url 'ads_list' %}">
-                    <span> Объявления </span>
                     <span class="icon">
                     <i class="fa-solid fa-list"></i>
                     </span>
+                    <span> Все объявления </span>
                 </a>
                 <a class="navbar-item" href="{% url 'search_advertisement' %}">
                     <span> Поиск </span>
@@ -42,51 +42,42 @@
                     <i class="fa-solid fa-magnifying-glass"></i>
                     </span>
                 </a>
-                <a class="navbar-item"  href="{% url 'create_advertisement' %}">
-                    <span> Создать </span>
-                    <span class="icon">
-                    <i class="fa-solid fa-feather"></i>
-                    </span>
-                </a>
-        <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link">
-            Еще
-            </a>
-
-        <div class="navbar-dropdown">
-            <a class="navbar-item">
-                О нас
-            </a>
-            <a class="navbar-item">
-                Вакансии
-            </a>
-
-            <hr class="navbar-divider">
-
-            <a class="navbar-item">
-            Контакты
-            </a>
-        </div>
-        </div>
-        </div>
+            </div>
 
         {% if request.user.is_authenticated %}
 
         <div class="navbar-end">
             <div class="navbar-item">
                 <a class="navbar-item" >
-                    <span> Привет, {{ request.user }}!   </span>
-
-                </a>
-                <div class="buttons">
-                    <a class="button is-info" href="{% url 'logout' %}">
-                    <span class="icon">
-                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span> Привет, {{ request.user.username }}!
                     </span>
-                    <span>Выйти</span>
+                </a>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        <span class="icon"><i class="fa-solid fa-user"></i></span>
+                        <span>Личный кабинет</span>
                     </a>
+                    <div class="navbar-dropdown" >
+                        <a class="navbar-item" href="{% url 'user_ads' %}">
+                            <span class="icon"><i class="fa-solid fa-list"></i></span>
+                            <span>Мои объявления</span>
+                        </a>
+                        <a class="navbar-item" href="{% url 'create_advertisement' %}">
+                            <span class="icon"><i class="fa-solid fa-pen"></i></span>
+                            <span>Создать</span>
+                        </a>
+                        <a class="navbar-item">
+                            <span class="icon"><i class="fa-solid fa-reply"></i></span><span>Мои отклики</span>
+                        </a>
 
+                        <hr class="navbar-divider">
+                        <a class="navbar-item" href="{% url 'logout' %}">
+                            <span class="icon"><i class="fa-solid fa-arrow-right-from-bracket"></i></span>
+                            <span>Выйти</span>
+                        </a>
+                    </div>
                 </div>
+
             </div>
         </div>
 
@@ -94,23 +85,33 @@
 
         <div class="navbar-end">
             <div class="navbar-item">
-                <div class="buttons">
-                    <a class="button is-success">
-                        <span>Регистрация</span>
-                        <span class="icon">
-                    <i class="fa-solid fa-user-plus"></i>
+                <a class="navbar-item" >
+                    <span> Вы еще не авторизованы
                     </span>
+                </a>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        <span class="icon"><i class="fa-solid fa-user"></i></span>
+                        <span>Личный кабинет</span>
                     </a>
-                    <a  class="button is-info" href="{% url 'login' %}">
-                    <span class="icon">
-                    <i class="fa-solid fa-right-to-bracket"></i>
-                    </span>
-                    <span>Войти</span>
-                    </a>
+                    <div class="navbar-dropdown" >
+                        <a class="navbar-item" href="{% url 'login' %}">
+                            <span class="icon"><i class="fa-solid fa-right-to-bracket"></i></span>
+                            <span>Войти</span>
+                        </a>
+                        <hr class="navbar-divider">
+                        <a class="navbar-item" href="{% url 'signup' %}">
+                            <span class="icon"><i class="fa-solid fa-address-card"></i></i></span>
+                            <span>Регистрация</span>
+                        </a>
+                    </div>
                 </div>
+
             </div>
         </div>
         {% endif %}
+
+
         </div>
         </nav>
         <!-- Responsive navbar finish-->

@@ -18,7 +18,7 @@
 
         <div class="media-content">
             <p class="title is-4">{{ ad_detail.user }}</p>
-            <p class="subtitle is-6">{{ ad_detail.creation_date | date:'d.M.Y' }}</p>
+            <p class="subtitle is-6">{{ ad_detail.creation_date | date:' d E Y G:i' }}</p>
         </div>
         <div class="media-right">
             <p class="title is-4">
@@ -69,7 +69,7 @@
                     </a>
                 </span>
                 <span class="icon">
-                    <i class="fa-times"></i>
+                    <i class="fa-solid fa-trash"></i>
                 </span>
             </button>
 
@@ -106,7 +106,7 @@
                 <p class="title is-4">
                     {{ feedback.author | truncatewords:7 }}
                 </p>
-                <p class="subtitle is-6">{{ feedback.creation_date | date:'d.M.Y' }}</p>
+                <p class="subtitle is-6">{{ feedback.creation_date | date:' d E Y G:i' }}</p>
             </div>
         </div>
         <div class="content">
@@ -118,33 +118,26 @@
 
 
 {% endfor %}
+<!-- Если пользователь прошел аутентификацию -->
+{% if request.user.is_authenticated %}
 
-{% if request.user.username == ad_detail.user.username %}
+<section class="section">
+    <h1 class="title">Хотите оставить комментарий? </h1>
+    <h2 class="subtitle">
+  </h2>
+</section>
+
+<!-- Добавляем форму для комментария.-->
+<form method="POST" >{% csrf_token %}
+    {{ form }}
+    <div class="buttons is-right">
+        <button type="submit" class="button is-link is-right">
+            Отправить отклик
+        </button>
+    </div>
+</form>
 
 {% endif %}
-
-    <!-- Добавляем форму для комментария.-->
-        <form method="POST" >
-            {% csrf_token %}
-            {{ form }}
-            </div>
-            <div class="buttons is-right">
-                <button type="submit" class="button is-link is-right">
-                Отправить отклик
-                </button>
-            </div>
-        </form>
-            <!-- Выводим текстовое поле для комментария
-            <div class="field">
-                <label class="label">Хотите откликнуться?</label>
-                <div class="control">
-                    <input class="input" type="text" placeholder="Напишите свой отклик здесь"
-                    </input>
-                </div>
-
-            </div>-->
-
-
 
 {% endblock content %}
 

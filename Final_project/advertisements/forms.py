@@ -1,3 +1,4 @@
+from ckeditor.widgets import CKEditorWidget
 from django import forms
 from django.forms import ModelForm
 from .models import Advertisement, Feedback
@@ -6,6 +7,7 @@ class AdForm(ModelForm):
     """
     Форма для создания объявления
     """
+    content = forms.CharField(widget=CKEditorWidget, label='Содержание объявления')
     class Meta:
         """
         В класс мета, как обычно, надо написать модель, по которой будет строиться форма и нужные нам поля.
@@ -19,9 +21,9 @@ class AdForm(ModelForm):
             'user'
                 ]
         labels = {
-            'title': "Название объявления",
+            'title': "Заголовок",
             'content': "Содержание",
-            'category': "Категории",
+            'category': "Категория",
         }
 
         widgets = {'user': forms.HiddenInput()}
