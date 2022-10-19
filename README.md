@@ -34,8 +34,8 @@ git clone https://github.com/XanderMoroz/Fan-game_service-board.git
 
 ### Лицензия
 
-Проект может быль использован без ограничений. Лиценхия не требуется
+Лицензия не требуется. Проект может быль использован без ограничений. 
 
 ### Авторы
 
-* **XanderMoroz** - [XanderMoroz](https://https://github.com/XanderMoroz/) - *All Work*
+* [XanderMoroz](https://https://github.com/XanderMoroz/) - *Все работы*
