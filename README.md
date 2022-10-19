@@ -1,14 +1,6 @@
-# Fan-game_service-board
-## Table Of Contents
 
-- [Table Of Contents](#table-of-contents)
-- [Описание проекта](#about-the-project)
-- [Стек технологий](#built-with)
-- [Инструкция по установке](#installation)
-- [Лицензия](#license)
-- [Авторы](#authors)
 
-## Описание проекта
+### Описание проекта
 
 ![Screen Shot](images/screenshot.png)
 
@@ -22,14 +14,14 @@ Fan-game_service-board представляет собой фанатский с
 * Аутентифицированный пользователь получает доступ в личный кабинет(ЛК). ЛК открывает пользователю доступ к списку откликов на его объявления.
 * Автор объявления может принять отклик другого пользователя и тогда автор отклика получает уведомление на e-mail.
 
-## Стек технологий 
+### Стек технологий 
 
 Whilst I was the main developer of this project, this project couldn't of even started without the help of these open source projects, special thanks to:
 
 * [JavaScript](https://www.javascript.com/)
 * [VueJS](https://vuejs.org/)
 
-## Инструкция по установке 
+### Инструкция по установке 
 
 1. Клонируете репозиторий
 
@@ -40,10 +32,10 @@ git clone https://github.com/XanderMoroz/Fan-game_service-board.git
 
 3. Наслаждаетесь результатом!
 
-## Лицензия
+### Лицензия
 
 Проект может быль использован без ограничений. Лиценхия не требуется
 
-## Авторы
+### Авторы
 
 * **XanderMoroz** - [XanderMoroz](https://https://github.com/XanderMoroz/) - *All Work*
