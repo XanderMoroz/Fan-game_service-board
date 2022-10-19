@@ -18,6 +18,7 @@ Fan-game_service-board представляет собой фанатский с
 
 Whilst I was the main developer of this project, this project couldn't of even started without the help of these open source projects, special thanks to:
 
+![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white)
 * [JavaScript](https://www.javascript.com/)
 * [VueJS](https://vuejs.org/)
 
