@@ -35,9 +35,28 @@ Fan-game_service-board представляет собой фанатский с
 ```sh
 git clone https://github.com/XanderMoroz/Fan-game_service-board.git
 ```
-2. Уставливаете зависимости
-
-3. Наслаждаетесь результатом!
+2. Уставливаете виртуальное окружение (virtual environment)
+```sh
+pip install virtualenv
+virtualenv envname
+```
+3. Активируете виртуальное окружение
+```sh
+./envname/scripts/activate
+```
+4. Переходите в дерикторию проекта Наслаждаетесь результатом!
+```sh
+cd ./Fan-game_service-board/
+```
+5. Устанавливаете зависимости
+```sh
+pip install -r requirements.txt
+```
+6. Запускаете сервер
+```sh
+python manage.py runserver
+```
+7. Наслаждаетесь результатом)
 
 ### Лицензия
 
