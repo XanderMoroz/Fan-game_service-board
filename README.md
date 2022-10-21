@@ -38,11 +38,10 @@ git clone https://github.com/XanderMoroz/Fan-game_service-board.git
 2. Уставливаете виртуальное окружение (virtual environment)
 ```sh
 pip install virtualenv
-virtualenv envname
 ```
 3. Активируете виртуальное окружение
 ```sh
-./envname/scripts/activate
+./venv/scripts/activate
 ```
 4. Переходите в дерикторию проекта Наслаждаетесь результатом!
 ```sh
